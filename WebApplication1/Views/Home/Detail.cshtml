@@ -1,0 +1,43 @@
+﻿@model WebApplication1.Models.tblCustomers
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>Detail</h1>
+
+<div>
+    <h4>tblCustomers</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CustomerName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Genders)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Genders)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Details)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Dated)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Dated)
+        </dd>
+       
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" class="btn btn-success" asp-route-id="@Model.CustomerId">Edit</a> |
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+</div>

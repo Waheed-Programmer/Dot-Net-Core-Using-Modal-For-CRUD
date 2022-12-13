@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WebApplication1.Models.tblCustomers>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="CreateOrEdit">Create New</a>
+</p>
+<table class="table table-striped table-hover table-bordered" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Dated)
+            </th> 
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Genders)
+            </th>
+            <th>
+               City
+            </th>          
+           
+           
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Details)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genders)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tblCities.CityName)
+            </td>           
+            
+            <td>
+                <a asp-action="CreateOrEdit" class="btn btn-primary" asp-route-id="@item.CustomerId">Edit</a> |
+                <a asp-action="Detail" class="btn btn-success" asp-route-id="@item.CustomerId" >Info</a> |
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.CustomerId" onclick="return confirm('Are you sure you want to delete this?')">Trash</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section Scripts{
+    <script src="~/js/site.js" asp-append-version="true"></script>
+}
