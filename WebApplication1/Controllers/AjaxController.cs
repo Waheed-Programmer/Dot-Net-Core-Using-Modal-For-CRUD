@@ -8,12 +8,10 @@ namespace WebApplication1.Controllers
     public class AjaxController : Controller
     {
         private readonly ApplicationDbContext _context;
-
         public AjaxController(ApplicationDbContext context)
         {
             _context = context;
         }
-
         public IActionResult Index()
         {
             
