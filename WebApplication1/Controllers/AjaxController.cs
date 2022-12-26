@@ -47,6 +47,7 @@ namespace WebApplication1.Controllers
                 EmployeeContact = objData.EmployeeContact,
                 EmployeeAddress = objData.EmployeeAddress,
                 DepartmentId = objData.DepartmentId,
+                Gender = objData.Gender
             };
             _context.Employees.Add(data);
             _context.SaveChanges();
