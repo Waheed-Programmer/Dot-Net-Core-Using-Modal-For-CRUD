@@ -12,5 +12,6 @@ namespace WebApplication1.Data
         public DbSet<tblCustomers> tblCustomers { get; set; }
         public DbSet<tblCity> tblCities { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Department> Departments { get; set; }
     }
 }

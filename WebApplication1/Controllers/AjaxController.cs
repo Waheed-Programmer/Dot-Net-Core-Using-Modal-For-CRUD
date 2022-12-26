@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using WebApplication1.Data;
 using WebApplication1.Models;
@@ -17,6 +18,18 @@ namespace WebApplication1.Controllers
             
             return View();
         }
+        //[HttpGet]
+        //public IActionResult Index2()
+        //{
+        //    var data = _context.Departments.ToList();
+        //    return View(data);
+        //}
+        [HttpGet]
+        public JsonResult DepartmentList()
+        {
+            var data = _context.Departments.ToList();
+            return Json(data);
+        }
         [HttpGet]
         public JsonResult EmployeList()
         {
@@ -33,6 +46,7 @@ namespace WebApplication1.Controllers
                 EmployeeEmail = objData.EmployeeEmail,
                 EmployeeContact = objData.EmployeeContact,
                 EmployeeAddress = objData.EmployeeAddress,
+                DepartmentId = objData.DepartmentId,
             };
             _context.Employees.Add(data);
             _context.SaveChanges();

@@ -1,7 +1,9 @@
 ﻿// Write your JavaScript code.
 
+
 $(document).ready(function () {
     ShowEmployeList();
+    LoadDepartment();
     //alert("Welcome")
     //$('#myTable').DataTable({
     //    "aLengthMenu": [[5, 10, 50, 100, -1], [5, 10, 50, 100, "All"]],
@@ -22,6 +24,7 @@ function ShowEmployeList() {
                 obj += '<td>' + item.employeeId + '</td>';
                 obj += '<td>' + item.employeeName + '</td>';
                 obj += '<td>' + item.employeeEmail + '</td>';
+                obj += '<td>' + item.departmentId + '</td>';
                 obj += '<td>' + item.employeeContact + '</td>';
                 obj += '<td>' + item.employeeAddress + '</td>';
                 obj += '<td><a href = "#" class="btn btn-primary btn-sm" onclick="Edit('+item.employeeId+')" >Edit</a > || <a href = "#" class="btn btn-danger btn-sm" onclick="Delete('+item.employeeId+')" >Delete</a ></td>';
@@ -53,15 +56,17 @@ function Clear() {
     $('#EmployeeEmail').val('');
     $('#EmployeeContact').val('');
     $('#EmployeeAddress').val('');
+    $('#ddldesignation').val('');
 }
 //Add Employee Data
 function addEmployee() {
-    debugger
+    
     var objData = {
         EmployeeName: $('#EmployeeName').val(),
         EmployeeEmail: $('#EmployeeEmail').val(),
         EmployeeContact: $('#EmployeeContact').val(),
-        EmployeeAddress: $('#EmployeeAddress').val()
+        EmployeeAddress: $('#EmployeeAddress').val(),
+        DepartmentId: $('#ddldesignation').val()
     }
     $.ajax({
         type: 'Post',
@@ -105,10 +110,11 @@ function Edit(id) {
         url: '/Ajax/GetbyId?id=' +id,       
         dataType: 'json',
         success: function (result) {
-            debugger
+            
             $('#Employeemodal').modal('show');
             $('#EmployeeId').val(result.employeeId);
             $('#EmployeeName').val(result.employeeName);
+            $('#ddldesignation').val(result.departmentId);
             $('#EmployeeEmail').val(result.employeeEmail);
             $('#EmployeeContact').val(result.employeeContact);
             $('#EmployeeAddress').val(result.employeeAddress);
@@ -126,13 +132,14 @@ function Edit(id) {
 }
 //Update data function
 function UpdateEmployee() {
-    debugger
+    
     var objData = {
         EmployeeId: $('#EmployeeId').val(),
         EmployeeName: $('#EmployeeName').val(),
         EmployeeEmail: $('#EmployeeEmail').val(),
         EmployeeContact: $('#EmployeeContact').val(),
-        EmployeeAddress: $('#EmployeeAddress').val()
+        EmployeeAddress: $('#EmployeeAddress').val(),
+        DepartmentId: $('#ddldesignation').val()
     }
     $.ajax({
         type: 'Post',
@@ -147,5 +154,29 @@ function UpdateEmployee() {
             HidePopUpModal();
         },
         error: function () { }
+    });
+}
+//Load Department in Dropdownlist
+function LoadDepartment() {    
+    $('#ddldesignation option').remove();
+    $('#ddldesignation').append("<option value=''>Select Department</option>");
+
+    $.ajax({
+        url: '/Ajax/DepartmentList',
+        type: 'Get',
+        dataType: 'json',
+        contentType: 'application/json;charset=utf-8;',
+        success: function (data, status, xhr) {
+            
+            if (data != null) {
+                $.each(data, function (key, value) {
+                    $('#ddldesignation').append("<option value='" + value.departmentId + "'>" + value.departmentName + "</option>");
+                });
+            }
+        },
+        error() {
+
+        }
+
     });
 }

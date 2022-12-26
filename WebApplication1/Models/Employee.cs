@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication1.Models
 {
@@ -10,5 +11,10 @@ namespace WebApplication1.Models
         public string EmployeeEmail { get; set; }
         public string EmployeeContact { get; set; }
         public string EmployeeAddress { get; set; }
+
+        [ForeignKey("Departments")]
+        public int? DepartmentId { get; set; }
+        public virtual Department Departments { get; set; }
+
     }
 }
