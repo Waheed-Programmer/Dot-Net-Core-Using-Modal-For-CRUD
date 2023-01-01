@@ -27,7 +27,6 @@ function ShowEmployeList() {
                 obj += '<td>' + item.departmentId + '</td>';
                 obj += '<td>' + item.employeeContact + '</td>';
                 obj += '<td>' + item.employeeAddress + '</td>';
-                obj += '<td>' + item.gender + '</td>';
                 obj += '<td><a href = "#" class="btn btn-primary btn-sm" onclick="Edit('+item.employeeId+')" >Edit</a > || <a href = "#" class="btn btn-danger btn-sm" onclick="Delete('+item.employeeId+')" >Delete</a ></td>';
                 obj += '</tr>';
 
@@ -58,6 +57,7 @@ function Clear() {
     $('#EmployeeContact').val('');
     $('#EmployeeAddress').val('');
     $('#ddldesignation').val('');
+    //$("input[name=radioGet]:checked").val('');
 }
 //Add Employee Data
 function addEmployee() {
@@ -67,8 +67,8 @@ function addEmployee() {
         EmployeeEmail: $('#EmployeeEmail').val(),
         EmployeeContact: $('#EmployeeContact').val(),
         EmployeeAddress: $('#EmployeeAddress').val(),
-        DepartmentId: $('#ddldesignation').val(),
-        Gender: $("input[name=radioGet]:checked").val()
+        DepartmentId: $('#ddldesignation').val()
+        //Gender: $("input[name=radioGet]:checked").val()
     }
     $.ajax({
         type: 'Post',
@@ -120,12 +120,12 @@ function Edit(id) {
             $('#EmployeeEmail').val(result.employeeEmail);
             $('#EmployeeContact').val(result.employeeContact);
             $('#EmployeeAddress').val(result.employeeAddress);
-            var a = $("input[name = radioGet]").val(result.gender);
-            console.log(a.val());
+            //var a = $("input[name = radioGet]").val(result.gender);
+            //console.log(a.val());
             
-            $("#radioGet").prop("checked", true);
+            //$("#radioGet").prop("checked", true);
            
-            //$("#radioGet").each(function () {
+            //$("input[name = radioGet]").each(function () {
             //    $(this).prop("checked", result.Gender);
             //});
             $('#InsertEmployee').css('display','none');
@@ -149,8 +149,8 @@ function UpdateEmployee() {
         EmployeeEmail: $('#EmployeeEmail').val(),
         EmployeeContact: $('#EmployeeContact').val(),
         EmployeeAddress: $('#EmployeeAddress').val(),
-        DepartmentId: $('#ddldesignation').val(),
-        Gender: $("input[name=radioGet]:checked").val()
+        DepartmentId: $('#ddldesignation').val()
+        //Gender: $("input[name=radioGet]:checked").val()
 
     }
     $.ajax({

@@ -11,7 +11,7 @@ namespace WebApplication1.Models
         public string EmployeeEmail { get; set; }
         public string EmployeeContact { get; set; }
         public string EmployeeAddress { get; set; }
-        public string Gender { get; set; }
+
 
         [ForeignKey("Departments")]
         public int? DepartmentId { get; set; }

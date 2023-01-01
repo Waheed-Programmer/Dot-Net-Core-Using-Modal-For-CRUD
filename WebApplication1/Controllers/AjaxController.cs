@@ -18,12 +18,7 @@ namespace WebApplication1.Controllers
             
             return View();
         }
-        //[HttpGet]
-        //public IActionResult Index2()
-        //{
-        //    var data = _context.Departments.ToList();
-        //    return View(data);
-        //}
+        
         [HttpGet]
         public JsonResult DepartmentList()
         {
@@ -47,7 +42,6 @@ namespace WebApplication1.Controllers
                 EmployeeContact = objData.EmployeeContact,
                 EmployeeAddress = objData.EmployeeAddress,
                 DepartmentId = objData.DepartmentId,
-                Gender = objData.Gender
             };
             _context.Employees.Add(data);
             _context.SaveChanges();
